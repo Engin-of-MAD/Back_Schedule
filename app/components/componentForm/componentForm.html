@@ -1,0 +1,116 @@
+
+
+<div class = "Form" ng-controller="formCtrl">
+    <form name="MyForm" ng-submit="MyForm.$valid" novalidate>
+        <table>
+            <tr>
+               <td class="form">
+                   <p class = "input_label">Ваше ФИО:</p>
+                   <input class = "input_form"
+                          type="text"
+                          ng-model="fio"
+                          placeholder="Иванов Иван Иванович"
+                          ng-maxlength="64"
+                          name="fio"
+                          required
+                   >
+               </td>
+               <td>
+                   <span class="error_input" ng-show="MyForm.fio.$error.required">*Обязательно</span>
+               </td>
+            </tr>
+
+            <tr>
+                <td class="form">
+                    <p class = "input_label">Специализация врача:</p>
+                    <select class = "sel" ng-model="specDoc" ng-options = "x for x in doctors"></select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form">
+                    <p class = "input_label">Причина обращения:</p>
+                    <input class = "input_form" type="text" ng-model="reason">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form">
+                    <p class = "input_label">Контактный телефон:</p>
+                    <input
+                            class="input_form"
+                            type="text"
+                            ng-model="phone"
+                            ui-mask="+7(999) 999-99-99"
+                            ui-mask-placeholder=""
+                            name="phone"
+                            ng-minlength="10"
+                            required
+                    />
+                </td>
+                <td>
+                    <span class="error_input" ng-show="MyForm.phone.$error.required">*Обязательно</span>
+                    <span class="error_input" ng-show="MyForm.phone.$error.minLength">Неполный номер</span>
+                </td>
+            </tr>
+
+            <tr>
+               <td class="form">
+                   <p class = "input_label">Адрес электронной почты:</p>
+
+
+                   <input class = "input_form"
+                          name="Email"
+                          type="text"
+                          ng-model="Email"
+                          placeholder="ivanov@email.com"
+                          required
+                          ng-pattern='/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/'
+                   >
+               </td>
+
+                <td>
+                    <span class="error_input" ng-show="MyForm.Email.$error.required">*Обязательно</span>
+                    <span class="error_input" ng-show="MyForm.Email.$error.pattern">*Некорретный Email</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p class = "input_label">Филиал:</p>
+                    <select class = "sel" ng-model="org" ng-options = "x for x in orgs"></select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p class = "input_label">Желаемая дата визита</p>
+                    <input class = "input_form"
+                           type="date"
+                           name="date_of_visit"
+                           ng-model="date_of_visit"
+                           required
+                    >
+                </td>
+                <td class="form">
+                    <span class="error_input" ng-messages="required">*Обязательно</span>
+                    <!--<span
+                     class="error_input"
+                      ng-show="MyForm.date_of_visit.$error.required">
+                      *Некорректная дата
+                      </span>-->
+                </td>
+            </tr>
+
+            <tr>
+               <td>
+                   <input class="send_btn" type="button" value="Записаться" ng-click="sendBtn()">
+               </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+
+
